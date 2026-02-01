@@ -2,12 +2,16 @@
 
 This is the official corporate website for Makoto Corporation, a company based in Osaka, Japan, specializing in real estate, land trading, and financial product investment.
 
+**Live site:** [https://makoto.ltd](https://makoto.ltd)
+
 ## Features
 
 - Multilingual support (Japanese, English, and Chinese)
 - Responsive design for all devices
 - Modern, professional design with animations
-- Contact form for inquiries
+- Contact form for inquiries (powered by Formspree)
+- SEO optimized with Open Graph, Twitter Cards, and JSON-LD
+- Accessible (ARIA attributes, skip navigation, focus styles)
 - Easy to deploy on GitHub Pages
 
 ## Project Structure
@@ -21,79 +25,57 @@ This is the official corporate website for Makoto Corporation, a company based i
 │   └── script.js           # JavaScript functionality
 ├── images/                 # Image assets
 │   ├── hero.jpg            # Hero section background
-│   └── office.jpg          # Office image for About section
+│   ├── office.jpg          # Office image for About section
+│   └── favicon.svg         # Site favicon
+├── robots.txt              # Search engine directives
+├── sitemap.xml             # Sitemap for SEO
+├── 404.html                # Custom 404 error page
+├── CNAME                   # Custom domain configuration
 └── README.md               # This file
 ```
 
 ## Setup and Development
 
-1. Clone this repository to your local machine:
+1. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/makoto-corporation.git
-cd makoto-corporation
+git clone https://github.com/jerrylin0318/makoto.git
+cd makoto
 ```
 
-2. Open the files in your preferred code editor.
-
-3. For local development, you can use any simple web server. For example, with Python:
+2. For local development, use any simple web server:
 
 ```bash
 # Python 3
 python -m http.server
 ```
 
-4. Visit `http://localhost:8000` in your browser to see the website.
+3. Visit `http://localhost:8000` in your browser.
 
-## Deployment to GitHub Pages
+## Deployment
 
-Follow these steps to deploy the website on GitHub Pages:
-
-1. Create a repository on GitHub (if you haven't already).
-
-2. Push the code to the GitHub repository:
-
-```bash
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/yourepository.git
-git push -u origin main
-```
-
-3. Configure GitHub Pages in your repository settings:
-   - Go to your repository on GitHub
-   - Click on "Settings"
-   - Scroll down to "GitHub Pages" section
-   - Select "main" or "master" branch as the source
-   - Click "Save"
-
-4. Your website will be published at `https://yourusername.github.io/yourepository/`
+This site is automatically deployed to GitHub Pages via GitHub Actions on push to `main`.
 
 ## Customization
 
 ### Changing Images
 
-1. Replace the images in the `images/` directory with your own. Make sure to keep the same filenames or update the references in the HTML and CSS.
-
-2. Optimal image sizes:
-   - Hero background: 1920px width, high-quality JPG
-   - Office image: 800px width, high-quality JPG
+Replace the images in the `images/` directory. Recommended sizes:
+- Hero background: 1920px width, high-quality JPG
+- Office image: 800px width, high-quality JPG
 
 ### Changing Content
 
-Edit the HTML file to update the text content in all three languages.
+Edit `index.html` to update text content in all three languages (JA/EN/ZH).
 
 ### Changing Colors
 
-The color scheme can be modified in the CSS file by changing the variables in the `:root` section.
+Modify CSS custom properties in the `:root` section of `css/style.css`.
+
+### Contact Form
+
+The contact form submits to [Formspree](https://formspree.io/). Update the form `action` URL in `index.html` with your own Formspree endpoint.
 
 ## License
 
 All rights reserved. This website is proprietary to Makoto Corporation.
-
-## Contact
-
-For inquiries, please contact:
-- Director: Kobayashi Hisao
-- Email: XXX@DDD.com
-- Phone: +XXXXXX 

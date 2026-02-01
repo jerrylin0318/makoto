@@ -29,6 +29,22 @@ body {
     padding: 0 15px;
 }
 
+/* Skip Link (Accessibility) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--light-color);
+    padding: 8px 16px;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
@@ -48,6 +64,16 @@ a {
 
 a:hover {
     color: var(--secondary-color);
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 /* Language Selector */
@@ -103,6 +129,13 @@ body[data-lang="ja"] span.ja,
 body[data-lang="en"] span.en,
 body[data-lang="zh"] span.zh {
     display: inline-block;
+}
+
+/* For label elements (form labels) */
+body[data-lang="ja"] label.ja,
+body[data-lang="en"] label.en,
+body[data-lang="zh"] label.zh {
+    display: block;
 }
 
 /* Header Styles */
@@ -179,7 +212,7 @@ nav ul li a:hover {
     color: var(--secondary-color);
 }
 
-/* Add this after the nav styles */
+/* Mobile menu toggle */
 .mobile-menu-toggle {
     display: none;
     background: none;
@@ -190,100 +223,11 @@ nav ul li a:hover {
     margin-left: 15px;
 }
 
-/* Media Queries for Responsive Layout */
-@media (max-width: 992px) {
-    .logo-mark {
-        font-size: 1.8rem;
-    }
-    
-    .company-name {
-        font-size: 1.2rem;
-    }
-    
-    nav ul li {
-        margin-left: 15px;
-    }
-    
-    .language-selector {
-        margin-right: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .header-right {
-        display: flex;
-        align-items: center;
-    }
-    
-    .language-selector {
-        margin-right: 15px;
-    }
-    
-    .lang-btn {
-        padding: 3px 8px;
-        font-size: 0.8rem;
-    }
-    
-    .mobile-menu-toggle {
-        display: block;
-    }
-    
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 250px;
-        height: 100vh;
-        background-color: var(--primary-color);
-        transition: right 0.3s ease;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 80px 20px 20px;
-        z-index: 5;
-    }
-    
-    nav.active {
-        right: 0;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    
-    nav ul li {
-        margin: 10px 0;
-        width: 100%;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 8px 0;
-        width: 100%;
-    }
-}
-
-@media (max-width: 576px) {
-    .logo-mark {
-        font-size: 1.6rem;
-    }
-    
-    .company-name {
-        font-size: 1rem;
-    }
-    
-    .lang-btn {
-        padding: 3px 6px;
-        font-size: 0.7rem;
-    }
-}
-
 /* Hero Section */
 .hero {
     height: 100vh;
     background-color: #003366; /* Fallback color */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?q=80&w=1920&auto=format&fit=crop');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../images/hero.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -291,7 +235,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     text-align: center;
-    padding-top: 60px; /* Add padding for fixed header */
+    padding-top: 60px;
 }
 
 .hero .overlay {
@@ -377,9 +321,9 @@ nav ul li a:hover {
 
 .about-image img {
     width: 100%;
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 10px 30px var(--shadow-color);
-    content: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop');
 }
 
 /* Services Section */
@@ -452,12 +396,19 @@ nav ul li a:hover {
     font-size: 1.2rem;
 }
 
+.contact-text a {
+    color: var(--text-color);
+}
+
+.contact-text a:hover {
+    color: var(--secondary-color);
+}
+
 .form-group {
     margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
     margin-bottom: 5px;
     font-weight: 500;
 }
@@ -524,8 +475,27 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive */
+/* ==========================================
+   Responsive Styles (consolidated)
+   ========================================== */
+
 @media (max-width: 992px) {
+    .logo-mark {
+        font-size: 1.8rem;
+    }
+
+    .company-name {
+        font-size: 1.2rem;
+    }
+
+    nav ul li {
+        margin-left: 15px;
+    }
+
+    .language-selector {
+        margin-right: 20px;
+    }
+
     .about-content, .contact-content {
         flex-direction: column;
     }
@@ -554,7 +524,20 @@ footer {
         font-size: 1.5rem;
     }
 
-    /* Mobile menu styles */
+    .header-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .language-selector {
+        margin-right: 15px;
+    }
+
+    .lang-btn {
+        padding: 3px 8px;
+        font-size: 0.8rem;
+    }
+
     .mobile-menu-toggle {
         display: block;
         font-size: 1.5rem;
@@ -599,16 +582,6 @@ footer {
         width: 100%;
     }
 
-    .language-selector {
-        top: 10px;
-        right: 10px;
-    }
-
-    .lang-btn {
-        padding: 3px 8px;
-        font-size: 0.8rem;
-    }
-
     .hero {
         padding-top: 50px;
     }
@@ -623,12 +596,16 @@ footer {
 }
 
 @media (max-width: 576px) {
-    .hero h2 {
-        font-size: 2rem;
+    header {
+        padding: 8px 0;
     }
 
-    .section-title {
-        font-size: 2rem;
+    .logo-mark {
+        font-size: 1.6rem;
+    }
+
+    .company-name {
+        font-size: 1rem;
     }
 
     .language-selector {
@@ -640,12 +617,12 @@ footer {
         font-size: 0.7rem;
     }
 
-    header {
-        padding: 8px 0;
-    }
-
     .hero {
         padding-top: 50px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
     }
 
     .hero p {
@@ -656,4 +633,8 @@ footer {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-} 
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
